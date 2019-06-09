@@ -1,0 +1,31 @@
+#!/bin/bash
+set -euxo pipefail
+
+url="https://builds.matomo.org/piwik-${MATOMO_VERSION}.tar.gz"
+packages=(
+	php7-dom
+	php7-gd
+	php7-iconv
+	php7-json
+	php7-ldap
+	php7-mbstring
+	php7-mysqli
+	php7-opcache
+	php7-pdo_mysql
+	php7-pecl-apcu
+	php7-pecl-redis
+	php7-simplexml
+	php7-xml
+	php7-zip
+)
+
+function step() {
+	echo "$@..." >&2
+}
+
+step "Downloading matomo release ${MATOMO_VERSION}"
+curl -sSfLo /opt/matomo.tgz "${url}"
+echo "${MATOMO_CHECKSUM}  /opt/matomo.tgz" | sha256sum -c
+
+step "Installing required packages"
+apk --no-cache add "${packages[@]}"
