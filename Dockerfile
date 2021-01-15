@@ -1,7 +1,7 @@
 FROM luzifer/alpine-nginx-php
 
-ENV MATOMO_VERSION=4.1.0 \
-    MATOMO_CHECKSUM=d38c782428a46296dd61e59ce72c69e7e02cda2b7bdf839e9cc71e975a18a816
+ENV MATOMO_VERSION=4.1.1 \
+    MATOMO_CHECKSUM=1e2ce7687b7ac05b20f6c08fe6a242b6aebd73ce84a16846277928342d686bef
 
 COPY rootfs /
 RUN set -ex && /usr/local/bin/container-setup
