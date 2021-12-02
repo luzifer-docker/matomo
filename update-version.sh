@@ -9,7 +9,7 @@ git reset --hard origin/master
 
 ### ---- ###
 
-version=$(curl -s "https://lv.luzifer.io/catalog-api/matomo/latest.txt?p=version")
+version=$(curl -s "https://lv.luzifer.io/v1/catalog/matomo/latest/version")
 grep -q "MATOMO_VERSION=${version} " Dockerfile && exit 0 || echo "Update required"
 
 filehash=$(curl -sSfL "https://builds.matomo.org/piwik-${version}.tar.gz" | sha256sum | cut -d ' ' -f 1)
